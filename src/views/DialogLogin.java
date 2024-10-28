@@ -157,7 +157,7 @@ public class DialogLogin extends BaseJdialog {
                 viewMenuPrincipal.setExtendedState(ViewMenuPrincipal.MAXIMIZED_BOTH);
                 viewMenuPrincipal.setVisible(true);// Visualizar frame
             } else {
-                util.alertMessage();
+                util.alertMessage("Error al iniciar sesión", true);
             }
 
             dispose();

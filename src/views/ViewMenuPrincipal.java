@@ -1,12 +1,14 @@
 package views;
 
+import core.utils.Util;
 import java.beans.PropertyVetoException;
 
 public class ViewMenuPrincipal extends javax.swing.JFrame {
 
     ViewAcercaDe viewAcercaDe = new ViewAcercaDe();
     ViewReserva viewReserva = new ViewReserva();
-     ViewMantenimientoCliente viewMantenimientoCliente = new ViewMantenimientoCliente();
+    ViewMantenimientoCliente viewMantenimientoCliente = new ViewMantenimientoCliente();
+    Util util;
 //    ViewMantenimientoHabitacion viewMantenimientoHabitacion = new ViewMantenimientoHabitacion();
 //    ViewMantenimientoEmpleado viewMantenimientoEmpleado = new ViewMantenimientoEmpleado();
 //    ViewMantenimientoProducto viewMantenimientoProducto = new ViewMantenimientoProducto();
@@ -14,6 +16,7 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form Principal
+     *
      * @throws java.beans.PropertyVetoException
      */
     public ViewMenuPrincipal() throws PropertyVetoException {
@@ -191,7 +194,8 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
     private void menuItemAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAcercaDeActionPerformed
 
         if (viewAcercaDe.isVisible()) {
-            viewAcercaDe.setAlwaysOnTop(true);
+            util.centerOnScreen(viewAcercaDe, true);
+//            viewAcercaDe.setAlwaysOnTop(true);
         } else {
             viewAcercaDe.setVisible(true);
         }
@@ -244,7 +248,7 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
 
     private void menuItemMantenimientoEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemMantenimientoEmpleadoActionPerformed
         // TODO add your handling code here:
-        
+
 //        if (viewMantenimientoEmpleado.isShowing()) {
 //            viewMantenimientoEmpleado.toFront();
 //        } else {
@@ -259,7 +263,7 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
 
     private void menuItemVentaProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVentaProductoActionPerformed
         // TODO add your handling code here:
-        
+
 //        if (viewVentaProducto.isShowing()) {
 //            viewVentaProducto.toFront();
 //        } else {
@@ -274,7 +278,7 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
 
     private void menuItemMantenimientoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemMantenimientoProductoActionPerformed
         // TODO add your handling code here:
-        
+
 //        if (viewMantenimientoProducto.isShowing()) {
 //            viewMantenimientoProducto.toFront();
 //        } else {

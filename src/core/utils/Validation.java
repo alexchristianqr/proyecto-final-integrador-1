@@ -54,7 +54,8 @@ public class Validation {
     // Función de validación de longitud mínima
     public Validation min(int minLength) {
         validationRules.add(comp -> {
-            if (comp instanceof JTextField jTextField) {
+            if (comp instanceof JTextField) {
+                JTextField jTextField = (JTextField) comp;
                 String text = jTextField.getText().trim();
                 return text.length() >= minLength;
             }
@@ -67,7 +68,8 @@ public class Validation {
     // Función de validación de longitud máxima
     public Validation max(int maxLength) {
         validationRules.add(comp -> {
-            if (comp instanceof JTextField jTextField) {
+            if (comp instanceof JTextField) {
+                JTextField jTextField = (JTextField) comp;
                 String text = jTextField.getText().trim();
                 return text.length() <= maxLength;
             }
@@ -80,7 +82,9 @@ public class Validation {
     // Nueva función de validación para verificar correos electrónicos
     public Validation email() {
         validationRules.add(comp -> {
-            if (comp instanceof JTextField jTextField) {
+            if (comp instanceof JTextField) {
+
+                JTextField jTextField = (JTextField) comp;
                 String text = jTextField.getText().trim();
                 return text.contains("@");
             }
@@ -93,7 +97,8 @@ public class Validation {
 
     public Validation validateAge() {
         validationRules.add(comp -> {
-            if (comp instanceof JTextField jTextField) {
+            if (comp instanceof JTextField) {
+                JTextField jTextField = (JTextField) comp;
                 String text = jTextField.getText().trim();
                 if (text.length() >= 4) {
                     try {
