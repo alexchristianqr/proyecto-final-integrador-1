@@ -1,6 +1,6 @@
 package controllers;
 
-import core.services.ReservaService;
+import services.ReservaService;
 import javax.swing.table.DefaultTableModel;
 import models.Reserva;
 

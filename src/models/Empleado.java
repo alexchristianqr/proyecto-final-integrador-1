@@ -3,6 +3,7 @@ package models;
 public class Empleado extends Persona {
 
     private int idEmpleado;
+    private int idUsuario;
     private int idPerfil;
     private double sueldo;
 
@@ -37,6 +38,14 @@ public class Empleado extends Persona {
 
     public void setSueldo(double sueldo) {
         this.sueldo = sueldo;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
 }

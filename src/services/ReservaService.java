@@ -1,5 +1,6 @@
-package core.services;
+package services;
 
+import core.services.BaseService;
 import core.db.MysqlDBService;
 import java.sql.ResultSet;
 import java.sql.SQLException;
