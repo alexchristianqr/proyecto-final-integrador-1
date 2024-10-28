@@ -1,6 +1,5 @@
 package views;
 
-import com.toedter.calendar.JDateChooser;
 import controllers.ReservaController;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -22,7 +21,7 @@ public class ViewReserva extends javax.swing.JInternalFrame {
     DialogListadoClientes dialogListadoClientes = new DialogListadoClientes();
     DialogListadoEmpleados dialogListadoEmpleados = new DialogListadoEmpleados();
     ReservaController reservaController = new ReservaController();
-    Reserva reserva, oReserva;
+    Reserva reserva;
     String accion = null;
     Calendar calendar;
 

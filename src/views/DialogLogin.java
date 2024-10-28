@@ -148,7 +148,7 @@ public class DialogLogin extends BaseJdialog {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         try {
-btnLogin.setText("");
+            btnLogin.setText("");
             String username = txtUsername.getText().toLowerCase();
             char[] password = txtPwd.getPassword();
 
