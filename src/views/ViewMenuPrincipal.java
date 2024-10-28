@@ -5,12 +5,12 @@ import java.beans.PropertyVetoException;
 public class ViewMenuPrincipal extends javax.swing.JFrame {
 
     ViewAcercaDe viewAcercaDe = new ViewAcercaDe();
-    /*ViewMantenimientoCliente viewMantenimientoCliente = new ViewMantenimientoCliente();
+    ViewMantenimientoCliente viewMantenimientoCliente = new ViewMantenimientoCliente();
     ViewMantenimientoHabitacion viewMantenimientoHabitacion = new ViewMantenimientoHabitacion();
     ViewMantenimientoEmpleado viewMantenimientoEmpleado = new ViewMantenimientoEmpleado();
     ViewReserva viewReserva = new ViewReserva();
     ViewMantenimientoProducto viewMantenimientoProducto = new ViewMantenimientoProducto();
-    ViewVentaProducto viewVentaProducto = new ViewVentaProducto();*/
+    ViewVentaProducto viewVentaProducto = new ViewVentaProducto();
 
     /**
      * Creates new form Principal
@@ -200,7 +200,7 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
     private void menuItemMantenimientoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemMantenimientoClienteActionPerformed
         // TODO add your handling code here:
 
-        /*if (viewMantenimientoCliente.isShowing()) {
+        if (viewMantenimientoCliente.isShowing()) {
             viewMantenimientoCliente.toFront();
         } else {
             if (viewMantenimientoCliente.isSelected()) {
@@ -209,13 +209,13 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
                 escritorio.add(viewMantenimientoCliente);
                 viewMantenimientoCliente.show();
             }
-        }*/
+        }
     }//GEN-LAST:event_menuItemMantenimientoClienteActionPerformed
 
     private void menuItemReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemReservarActionPerformed
         // TODO add your handling code here:
 
-        /*if (viewReserva.isShowing()) {
+        if (viewReserva.isShowing()) {
             viewReserva.toFront();
         } else {
             if (viewReserva.isSelected()) {
@@ -224,13 +224,13 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
                 escritorio.add(viewReserva);
                 viewReserva.show();
             }
-        }*/
+        }
     }//GEN-LAST:event_menuItemReservarActionPerformed
 
     private void menuItemMantenimientoHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemMantenimientoHabitacionActionPerformed
         // TODO add your handling code here:
 
-        /*if (viewMantenimientoHabitacion.isShowing()) {
+        if (viewMantenimientoHabitacion.isShowing()) {
             viewMantenimientoHabitacion.toFront();
         } else {
             if (viewMantenimientoHabitacion.isSelected()) {
@@ -239,13 +239,13 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
                 escritorio.add(viewMantenimientoHabitacion);
                 viewMantenimientoHabitacion.show();
             }
-        }*/
+        }
     }//GEN-LAST:event_menuItemMantenimientoHabitacionActionPerformed
 
     private void menuItemMantenimientoEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemMantenimientoEmpleadoActionPerformed
         // TODO add your handling code here:
         
-        /*if (viewMantenimientoEmpleado.isShowing()) {
+        if (viewMantenimientoEmpleado.isShowing()) {
             viewMantenimientoEmpleado.toFront();
         } else {
             if (viewMantenimientoEmpleado.isSelected()) {
@@ -254,13 +254,13 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
                 escritorio.add(viewMantenimientoEmpleado);
                 viewMantenimientoEmpleado.show();
             }
-        }*/
+        }
     }//GEN-LAST:event_menuItemMantenimientoEmpleadoActionPerformed
 
     private void menuItemVentaProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVentaProductoActionPerformed
         // TODO add your handling code here:
         
-        /*if (viewVentaProducto.isShowing()) {
+        if (viewVentaProducto.isShowing()) {
             viewVentaProducto.toFront();
         } else {
             if (viewVentaProducto.isSelected()) {
@@ -269,13 +269,13 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
                 escritorio.add(viewVentaProducto);
                 viewVentaProducto.show();
             }
-        }*/
+        }
     }//GEN-LAST:event_menuItemVentaProductoActionPerformed
 
     private void menuItemMantenimientoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemMantenimientoProductoActionPerformed
         // TODO add your handling code here:
         
-        /*if (viewMantenimientoProducto.isShowing()) {
+        if (viewMantenimientoProducto.isShowing()) {
             viewMantenimientoProducto.toFront();
         } else {
             if (viewMantenimientoProducto.isSelected()) {
@@ -284,7 +284,7 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
                 escritorio.add(viewMantenimientoProducto);
                 viewMantenimientoProducto.show();
             }
-        }*/
+        }
     }//GEN-LAST:event_menuItemMantenimientoProductoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
