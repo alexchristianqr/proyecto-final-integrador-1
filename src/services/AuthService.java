@@ -40,7 +40,7 @@ public class AuthService extends BaseService {
                     querySQL_2 = "SELECT u.*, c.id AS 'id_cliente', c.id_persona FROM usuarios u JOIN clientes c ON c.id_usuario = u.id AND c.estado = 'activo' WHERE u.username = ? AND u.pwd = ? AND u.estado = 'activo' LIMIT 1;";
                     break;
                 default:
-                    throw new RuntimeException("Rol no permitido");
+                    return false;
             }
 
             Object[] parametrosSQL_2 = {username, pwd};

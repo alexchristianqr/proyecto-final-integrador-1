@@ -122,32 +122,6 @@ public class DialogLogin extends BaseJdialog {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-//        try {
-//            btnLogin.setText("");
-//            String username = txtUsername.getText().toLowerCase();
-//            char[] password = txtPwd.getPassword();
-//            String passwordString = new String(password);
-//
-//            ResponseService<Usuario> response = usuarioController.login(username, passwordString);
-//            System.out.println("es: " + response.isSuccess());
-//
-//            if (response.isSuccess()) {
-//                dispose();
-//            } else {
-//                util.alertMessage("Error al iniciar sesión", true);
-//            }
-//
-////            if (username.equalsIgnoreCase("alex") && isPasswordCorrect(password, "alex")) {
-////                viewMenuPrincipal = new ViewMenuPrincipal(); // Crear objeto del JFrame principal
-////                viewMenuPrincipal.setExtendedState(ViewMenuPrincipal.MAXIMIZED_BOTH);
-////                viewMenuPrincipal.setVisible(true);// Visualizar frame
-////            } else {
-////                util.alertMessage("Error al iniciar sesión", true);
-////            }
-//        } catch (NullPointerException ex) {
-//            util.alertMessage("Error al iniciar sesión", true);
-//            JOptionPane.showMessageDialog(null, "Contraseña inválida. Intententalo nuevamente.", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
-//        }
 
         try {
             btnLogin.setEnabled(false);
@@ -165,12 +139,14 @@ public class DialogLogin extends BaseJdialog {
                 String userRole = usuario.getRol(); // Obtener el rol del usuario
                 System.out.println("Tipo de usuario: " + userRole);
 
-                util.alertMessage("Usuario logueado correctamente");
+                dispose();
                 
                 viewMenuPrincipal = new ViewMenuPrincipal(); // Crear objeto del JFrame principal
                 viewMenuPrincipal.setExtendedState(ViewMenuPrincipal.MAXIMIZED_BOTH);
+                
+                util.alertMessage("Usuario logueado correctamente");
+                
                 viewMenuPrincipal.setVisible(true);// Visualizar frame
-                dispose();
             } else {
                 util.alertMessage("Usuario o contraseña inválida. Inténtalo nuevamente.", true);
                 btnLogin.setEnabled(true);

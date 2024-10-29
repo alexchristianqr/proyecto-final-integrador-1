@@ -21,6 +21,8 @@ public class UsuarioController extends BaseController<Usuario, UsuarioService> {
         boolean success = authService.login(username, pwd);
 
         response.setSuccess(success);
+        if (!success) return response;
+
         response.setMessage("usuario logueado como: " + UsuarioThreadLocal.get().getRol());
         response.setResult(UsuarioThreadLocal.get());
 
@@ -32,6 +34,8 @@ public class UsuarioController extends BaseController<Usuario, UsuarioService> {
         boolean success = usuarioService.registrarUsuario(usuario);
 
         response.setSuccess(success);
+        if (!success) return response;
+        
         response.setMessage("usuario registrado existosamente");
 
         return response;
