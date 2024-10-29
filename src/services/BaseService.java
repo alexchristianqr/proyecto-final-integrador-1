@@ -1,6 +1,6 @@
-package core.services;
+package services;
 
-import core.db.MysqlDBService;
+import core.services.MysqlDBService;
 
 public abstract class BaseService {
 

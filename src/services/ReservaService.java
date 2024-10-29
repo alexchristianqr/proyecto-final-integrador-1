@@ -1,7 +1,6 @@
 package services;
 
-import core.services.BaseService;
-import core.db.MysqlDBService;
+import core.services.MysqlDBService;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;

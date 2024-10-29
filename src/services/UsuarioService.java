@@ -1,7 +1,6 @@
 package services;
 
-import core.services.BaseService;
-import core.db.MysqlDBService;
+import core.services.MysqlDBService;
 import models.Cliente;
 import models.Empleado;
 import models.Usuario;

@@ -1,7 +1,6 @@
 package services;
 
-import core.db.MysqlDBService;
-import core.services.BaseService;
+import core.services.MysqlDBService;
 import core.utils.UsuarioThreadLocal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,10 +33,10 @@ public class AuthService extends BaseService {
 
             switch (rol) {
                 case "empleado":
-                    querySQL_2 = "SELECT u.*, c.id AS 'id_empleado', c.id_persona FROM empelados u JOIN candidatos c ON c.id_usuario = u.id AND c.estado = 'activo' WHERE u.username = ? AND u.pwd = ? AND u.estado = 'activo' LIMIT 1;";
+                    querySQL_2 = "SELECT u.*, c.id AS 'id_empleado', c.id_persona FROM empleados u JOIN empleados c ON c.id_usuario = u.id AND c.estado = 'activo' WHERE u.username = ? AND u.pwd = ? AND u.estado = 'activo' LIMIT 1;";
                     break;
                 case "cliente":
-                    querySQL_2 = "SELECT u.*, r.id AS 'id_reclutador', r.id_persona FROM usuarios u JOIN reclutadores r ON r.id_usuario = u.id AND r.estado = 'activo' WHERE u.username = ? AND u.pwd = ? AND u.estado = 'activo' LIMIT 1;";
+                    querySQL_2 = "SELECT u.*, r.id AS 'id_cliente', r.id_persona FROM usuarios u JOIN clientes r ON r.id_usuario = u.id AND r.estado = 'activo' WHERE u.username = ? AND u.pwd = ? AND u.estado = 'activo' LIMIT 1;";
                     break;
                 default:
                     throw new RuntimeException("Rol no permitido");
@@ -108,7 +107,7 @@ public class AuthService extends BaseService {
                         cliente = new Cliente();
 
                         /* OBTENER DATOS DEL RECLUTADOR */
-                        querySQL_3 = "SELECT * FROM reclutadores r WHERE r.id = ? LIMIT 1;";
+                        querySQL_3 = "SELECT * FROM clientes r WHERE r.id = ? LIMIT 1;";
                         Object[] parametrosSQL_3 = {usuario.getIdCliente()};
                         rs_3 = db.queryConsultar(querySQL_3, parametrosSQL_3);
 
