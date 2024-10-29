@@ -189,6 +189,7 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
     private void menuItemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSalirActionPerformed
         // TODO add your handling code here:
         dispose();
+        System.exit(0);
     }//GEN-LAST:event_menuItemSalirActionPerformed
 
     private void menuItemAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAcercaDeActionPerformed

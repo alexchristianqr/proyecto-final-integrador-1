@@ -1,48 +1,21 @@
 package views;
 
+import controllers.UsuarioController;
 import core.forms.BaseJdialog;
-import java.beans.PropertyVetoException;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import core.services.ResponseService;
+import core.utils.UsuarioThreadLocal;
+import models.Usuario;
 
 public class DialogLogin extends BaseJdialog {
 
     ViewMenuPrincipal viewMenuPrincipal;
+    UsuarioController usuarioController = new UsuarioController();
 
     /**
      * Creates new form DialogLogin
      */
     public DialogLogin() {
         initComponents();
-    }
-
-    private char[] pwdToArray(String pwd) {
-        char[] data = pwd.toCharArray();
-
-        // Imprimir el arreglo de caracteres
-        for (char caracter : data) {
-            System.out.print(caracter + " ");
-        }
-
-        return data;
-    }
-
-    private boolean isPasswordCorrect(char[] input, String password) {
-        boolean isCorrect;
-        char[] correctPassword = pwdToArray(password);
-
-        if (input.length != correctPassword.length) {
-            isCorrect = false;
-        } else {
-            isCorrect = Arrays.equals(input, correctPassword);
-        }
-
-        //Zero out the password.
-        Arrays.fill(correctPassword, '0');
-
-        return isCorrect;
     }
 
     /**
@@ -83,10 +56,12 @@ public class DialogLogin extends BaseJdialog {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Usuario:");
 
-        txtUsername.setText("alex");
+        txtUsername.setText("alex.quispe@gmail.com");
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Contraseña:");
+
+        txtPwd.setText("12345678");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -147,24 +122,68 @@ public class DialogLogin extends BaseJdialog {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        try {
-            btnLogin.setText("");
-            String username = txtUsername.getText().toLowerCase();
-            char[] password = txtPwd.getPassword();
+//        try {
+//            btnLogin.setText("");
+//            String username = txtUsername.getText().toLowerCase();
+//            char[] password = txtPwd.getPassword();
+//            String passwordString = new String(password);
+//
+//            ResponseService<Usuario> response = usuarioController.login(username, passwordString);
+//            System.out.println("es: " + response.isSuccess());
+//
+//            if (response.isSuccess()) {
+//                dispose();
+//            } else {
+//                util.alertMessage("Error al iniciar sesión", true);
+//            }
+//
+////            if (username.equalsIgnoreCase("alex") && isPasswordCorrect(password, "alex")) {
+////                viewMenuPrincipal = new ViewMenuPrincipal(); // Crear objeto del JFrame principal
+////                viewMenuPrincipal.setExtendedState(ViewMenuPrincipal.MAXIMIZED_BOTH);
+////                viewMenuPrincipal.setVisible(true);// Visualizar frame
+////            } else {
+////                util.alertMessage("Error al iniciar sesión", true);
+////            }
+//        } catch (NullPointerException ex) {
+//            util.alertMessage("Error al iniciar sesión", true);
+//            JOptionPane.showMessageDialog(null, "Contraseña inválida. Intententalo nuevamente.", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+//        }
 
-            if (username.equalsIgnoreCase("alex") && isPasswordCorrect(password, "alex")) {
+        try {
+            btnLogin.setEnabled(false);
+            String username = txtUsername.getText().toLowerCase();
+            char[] passwordArray = txtPwd.getPassword();
+            String password = new String(passwordArray);
+
+            // Consultar la base de datos para validar el usuario y la contraseña
+            ResponseService<Usuario> response = usuarioController.login(username, password);
+            System.out.println("Success: " + response.isSuccess());
+
+            if (response.isSuccess()) {
+                // Guardar el usuario en el ThreadLocal
+                Usuario usuario = UsuarioThreadLocal.get();
+                String userRole = usuario.getRol(); // Obtener el rol del usuario
+                System.out.println("Tipo de usuario: " + userRole);
+
+                util.alertMessage("Usuario logueado correctamente");
+                
                 viewMenuPrincipal = new ViewMenuPrincipal(); // Crear objeto del JFrame principal
                 viewMenuPrincipal.setExtendedState(ViewMenuPrincipal.MAXIMIZED_BOTH);
                 viewMenuPrincipal.setVisible(true);// Visualizar frame
+                dispose();
             } else {
-                util.alertMessage("Error al iniciar sesión", true);
+                util.alertMessage("Usuario o contraseña inválida. Inténtalo nuevamente.", true);
+                btnLogin.setEnabled(true);
+                txtPwd.setText("");
+                txtPwd.requestFocus();
             }
+        } catch (Exception ex) {
+            util.alertMessage(ex.getMessage(), true);
 
-            dispose();
-        } catch (NullPointerException ex) {
-            JOptionPane.showMessageDialog(null, "Contraseña inválida. Intententalo nuevamente.", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(DialogLogin.class.getName()).log(Level.SEVERE, null, ex);
+            btnLogin.setEnabled(true);
+            txtPwd.setText("");
+            txtPwd.requestFocus();
+            throw new RuntimeException(ex);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 

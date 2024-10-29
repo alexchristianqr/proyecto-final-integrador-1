@@ -28,15 +28,16 @@ public class AuthService extends BaseService {
             String rol = "";
 
             if (rs_1.next()) {
+            System.out.println("alex: "+ rs_1);
                 rol = rs_1.getString("rol");
             }
 
             switch (rol) {
                 case "empleado":
-                    querySQL_2 = "SELECT u.*, c.id AS 'id_empleado', c.id_persona FROM empleados u JOIN empleados c ON c.id_usuario = u.id AND c.estado = 'activo' WHERE u.username = ? AND u.pwd = ? AND u.estado = 'activo' LIMIT 1;";
+                    querySQL_2 = "SELECT u.*, e.id AS 'id_empleado', e.id_persona FROM usuarios u JOIN empleados e ON e.id_usuario = u.id AND e.estado = 'activo' WHERE u.username = ? AND u.pwd = ? AND u.estado = 'activo' LIMIT 1;";
                     break;
                 case "cliente":
-                    querySQL_2 = "SELECT u.*, r.id AS 'id_cliente', r.id_persona FROM usuarios u JOIN clientes r ON r.id_usuario = u.id AND r.estado = 'activo' WHERE u.username = ? AND u.pwd = ? AND u.estado = 'activo' LIMIT 1;";
+                    querySQL_2 = "SELECT u.*, c.id AS 'id_cliente', c.id_persona FROM usuarios u JOIN clientes c ON c.id_usuario = u.id AND c.estado = 'activo' WHERE u.username = ? AND u.pwd = ? AND u.estado = 'activo' LIMIT 1;";
                     break;
                 default:
                     throw new RuntimeException("Rol no permitido");
@@ -66,7 +67,7 @@ public class AuthService extends BaseService {
                         usuario.setIdEmpleado(rs_2.getInt("id_empleado"));
                         empleado = new Empleado();
 
-                        /* OBTENER DATOS DEL CANDIDATO */
+                        /* OBTENER DATOS DEL EMPLEADO */
                         querySQL_3 = "SELECT * FROM empleados e WHERE e.id = ? LIMIT 1;";
                         Object[] parametrosSQL_3 = {usuario.getIdEmpleado()};
                         rs_3 = db.queryConsultar(querySQL_3, parametrosSQL_3);
@@ -102,12 +103,13 @@ public class AuthService extends BaseService {
                         usuario.setEmpleado(empleado);
                         success = true;
                     }
-                    case "cliente": 
-                        usuario.setIdCliente(rs_2.getInt("id_cliente"));
+                    break;
+                    case "cliente":
+                        usuario.setIdCliente(rs_2.getInt("id_clientess"));
                         cliente = new Cliente();
 
-                        /* OBTENER DATOS DEL RECLUTADOR */
-                        querySQL_3 = "SELECT * FROM clientes r WHERE r.id = ? LIMIT 1;";
+                        /* OBTENER DATOS DEL CLIENTE */
+                        querySQL_3 = "SELECT * FROM clientes c WHERE c.id = ? LIMIT 1;";
                         Object[] parametrosSQL_3 = {usuario.getIdCliente()};
                         rs_3 = db.queryConsultar(querySQL_3, parametrosSQL_3);
 
@@ -142,9 +144,9 @@ public class AuthService extends BaseService {
                         usuario.setCliente(cliente);
 
                         success = true;
-                        
-                    break;
-                    default :
+
+                        break;
+                    default:
                         throw new RuntimeException("Rol no permitido");
                 }
             }
