@@ -358,7 +358,8 @@ public class ViewMantenimientoHabitacion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 
         habitacion = new Habitacion();// Crear instancia
-        habitacion.setIdTipoHabitacion(cbxIdTipoHabitacion.getSelectedIndex() + 1);
+//        habitacion.setIdTipoHabitacion(cbxIdTipoHabitacion.getSelectedIndex() + 1);
+        habitacion.setIdTipoHabitacion(1);
         habitacion.setDescripcion(txtDescripcion.getText());
         habitacion.setNivel(cbxNivel.getSelectedItem().toString());
         habitacion.setNumeroPiso(txtNroHabitacion.getText());

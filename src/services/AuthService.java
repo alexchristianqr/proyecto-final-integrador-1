@@ -28,7 +28,6 @@ public class AuthService extends BaseService {
             String rol = "";
 
             if (rs_1.next()) {
-            System.out.println("alex: "+ rs_1);
                 rol = rs_1.getString("rol");
             }
 
@@ -36,9 +35,9 @@ public class AuthService extends BaseService {
                 case "empleado":
                     querySQL_2 = "SELECT u.*, e.id AS 'id_empleado', e.id_persona FROM usuarios u JOIN empleados e ON e.id_usuario = u.id AND e.estado = 'activo' WHERE u.username = ? AND u.pwd = ? AND u.estado = 'activo' LIMIT 1;";
                     break;
-                case "cliente":
-                    querySQL_2 = "SELECT u.*, c.id AS 'id_cliente', c.id_persona FROM usuarios u JOIN clientes c ON c.id_usuario = u.id AND c.estado = 'activo' WHERE u.username = ? AND u.pwd = ? AND u.estado = 'activo' LIMIT 1;";
-                    break;
+//                case "cliente":
+//                    querySQL_2 = "SELECT u.*, c.id AS 'id_cliente', c.id_persona FROM usuarios u JOIN clientes c ON c.id_usuario = u.id AND c.estado = 'activo' WHERE u.username = ? AND u.pwd = ? AND u.estado = 'activo' LIMIT 1;";
+//                    break;
                 default:
                     return false;
             }
@@ -104,48 +103,48 @@ public class AuthService extends BaseService {
                         success = true;
                     }
                     break;
-                    case "cliente":
-                        usuario.setIdCliente(rs_2.getInt("id_clientess"));
-                        cliente = new Cliente();
-
-                        /* OBTENER DATOS DEL CLIENTE */
-                        querySQL_3 = "SELECT * FROM clientes c WHERE c.id = ? LIMIT 1;";
-                        Object[] parametrosSQL_3 = {usuario.getIdCliente()};
-                        rs_3 = db.queryConsultar(querySQL_3, parametrosSQL_3);
-
-                        while (rs_3.next()) {
-                            cliente.setIdCliente(rs_3.getInt("id"));
-                            cliente.setIdPersona(rs_3.getInt("id_persona"));
-                            cliente.setIdUsuario(rs_3.getInt("id_usuario"));
-                            cliente.setEstado(rs_3.getString("estado"));
-                            cliente.setFechaCreado(rs_3.getString("fecha_creado"));
-                            cliente.setFechaActualizado(rs_3.getString("fecha_actualizado"));
-                        }
-
-                        /* OBTENER DATOS DE LA PERSONA */
-                        querySQL_4 = "SELECT * FROM personas p WHERE p.id = ? LIMIT 1;";
-                        Object[] parametrosSQL_4 = {usuario.getIdPersona()};
-                        rs_4 = db.queryConsultar(querySQL_4, parametrosSQL_4);
-
-                        while (rs_4.next()) {
-                            cliente.setIdPersona(rs_4.getInt("id"));
-                            cliente.setNombre(rs_4.getString("nombre"));
-                            cliente.setApellidos(rs_4.getString("apellido"));
-                            cliente.setTipoDocumento(rs_4.getInt("tipo_documento"));
-                            cliente.setNroDocumento(rs_4.getString("nrodocumento"));
-                            cliente.setSexo(rs_4.getString("sexo"));
-                            cliente.setEdad(rs_4.getString("edad"));
-                            cliente.setTelefono(rs_4.getString("telefono"));
-                            cliente.setEstado(rs_4.getString("estado"));
-                            cliente.setFechaCreado(rs_4.getString("fecha_creado"));
-                            cliente.setFechaActualizado(rs_4.getString("fecha_actualizado"));
-                        }
-
-                        usuario.setCliente(cliente);
-
-                        success = true;
-
-                        break;
+//                    case "cliente":
+//                        usuario.setIdCliente(rs_2.getInt("id_clientess"));
+//                        cliente = new Cliente();
+//
+//                        /* OBTENER DATOS DEL CLIENTE */
+//                        querySQL_3 = "SELECT * FROM clientes c WHERE c.id = ? LIMIT 1;";
+//                        Object[] parametrosSQL_3 = {usuario.getIdCliente()};
+//                        rs_3 = db.queryConsultar(querySQL_3, parametrosSQL_3);
+//
+//                        while (rs_3.next()) {
+//                            cliente.setIdCliente(rs_3.getInt("id"));
+//                            cliente.setIdPersona(rs_3.getInt("id_persona"));
+//                            cliente.setIdUsuario(rs_3.getInt("id_usuario"));
+//                            cliente.setEstado(rs_3.getString("estado"));
+//                            cliente.setFechaCreado(rs_3.getString("fecha_creado"));
+//                            cliente.setFechaActualizado(rs_3.getString("fecha_actualizado"));
+//                        }
+//
+//                        /* OBTENER DATOS DE LA PERSONA */
+//                        querySQL_4 = "SELECT * FROM personas p WHERE p.id = ? LIMIT 1;";
+//                        Object[] parametrosSQL_4 = {usuario.getIdPersona()};
+//                        rs_4 = db.queryConsultar(querySQL_4, parametrosSQL_4);
+//
+//                        while (rs_4.next()) {
+//                            cliente.setIdPersona(rs_4.getInt("id"));
+//                            cliente.setNombre(rs_4.getString("nombre"));
+//                            cliente.setApellidos(rs_4.getString("apellido"));
+//                            cliente.setTipoDocumento(rs_4.getInt("tipo_documento"));
+//                            cliente.setNroDocumento(rs_4.getString("nrodocumento"));
+//                            cliente.setSexo(rs_4.getString("sexo"));
+//                            cliente.setEdad(rs_4.getString("edad"));
+//                            cliente.setTelefono(rs_4.getString("telefono"));
+//                            cliente.setEstado(rs_4.getString("estado"));
+//                            cliente.setFechaCreado(rs_4.getString("fecha_creado"));
+//                            cliente.setFechaActualizado(rs_4.getString("fecha_actualizado"));
+//                        }
+//
+//                        usuario.setCliente(cliente);
+//
+//                        success = true;
+//
+//                        break;
                     default:
                         throw new RuntimeException("Rol no permitido");
                 }

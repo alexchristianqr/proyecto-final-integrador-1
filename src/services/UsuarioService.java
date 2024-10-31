@@ -34,7 +34,7 @@ public class UsuarioService extends BaseService {
                         // Insertar candidato
                         ClienteService clienteService = new ClienteService();
                         Cliente cliente = new Cliente();
-                        cliente.setIdUsuario(id_usuario);
+//                        cliente.setIdUsuario(id_usuario);
                         cliente.setNombre(usuario.getNombres());
                         cliente.setApellidos(usuario.getApellidos());
                         cliente.setEstado("activo");

@@ -41,7 +41,8 @@ public class HabitacionService extends BaseService {
 
     public void crearHabitacion(Habitacion habitacion) {
         querySQL_1 = "INSERT INTO habitaciones (id_tipohabitacion, descripcion, nivel, numero_piso, precio, cantidad_camas, fecha_creado) VALUES (?,?,?,?,?,?,?)";
-        Object[] parametrosSQL_2 = {habitacion.getIdHabitacion(), habitacion.getDescripcion(), habitacion.getNivel(), habitacion.getNumeroPiso(), habitacion.getPrecio(), habitacion.getCantidadCamas(), habitacion.getFechaCreado()};
+        //Object[] parametrosSQL_2 = {habitacion.getIdHabitacion(), habitacion.getDescripcion(), habitacion.getNivel(), habitacion.getNumeroPiso(), habitacion.getPrecio(), habitacion.getCantidadCamas(), habitacion.getFechaCreado()};
+        Object[] parametrosSQL_2 = {1, habitacion.getDescripcion(), habitacion.getNivel(), habitacion.getNumeroPiso(), habitacion.getPrecio(), habitacion.getCantidadCamas(), habitacion.getFechaCreado()};
         db.queryInsertar(querySQL_1, parametrosSQL_2);
 
         db.cerrarConsulta();
