@@ -1,6 +1,6 @@
 package controllers;
 
-import core.services.ClienteService;
+import services.ClienteService;
 import javax.swing.table.DefaultTableModel;
 import models.Cliente;
 
