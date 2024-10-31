@@ -1,6 +1,7 @@
 package views;
 
 import controllers.ReservaController;
+import core.utils.Util;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,6 +14,7 @@ import models.Reserva;
 
 public class ViewReserva extends javax.swing.JInternalFrame {
 
+    Util util = new Util();
     static Cliente cliente = null;
     static Habitacion habitacion = null;
     static Empleado empleado = null;
@@ -533,17 +535,22 @@ public class ViewReserva extends javax.swing.JInternalFrame {
     private void btnSeleccionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarClienteActionPerformed
         // TODO add your handling code here:
 
+        util.centerOnScreen(dialogListadoClientes, true);
+
         if (dialogListadoClientes.isVisible()) {
             dialogListadoClientes.toFront();
         } else {
             dialogListadoClientes.setVisible(true);
         }
+
         dialogListadoClientes.listarClientes();
     }//GEN-LAST:event_btnSeleccionarClienteActionPerformed
 
     private void btnSeleccionarHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarHabitacionActionPerformed
         // TODO add your handling code here:
 
+        util.centerOnScreen(dialogListadoHabitaciones, true);
+        
         if (dialogListadoHabitaciones.isVisible()) {
             dialogListadoHabitaciones.toFront();
         } else {
@@ -555,6 +562,8 @@ public class ViewReserva extends javax.swing.JInternalFrame {
     private void btnSeleccionarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarEmpleadoActionPerformed
         // TODO add your handling code here:
 
+        util.centerOnScreen(dialogListadoEmpleados, true);
+                
         if (dialogListadoEmpleados.isVisible()) {
             dialogListadoEmpleados.toFront();
         } else {

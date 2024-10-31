@@ -149,6 +149,7 @@ public class DialogLogin extends BaseJdialog {
                 viewMenuPrincipal.setVisible(true);// Visualizar frame
             } else {
                 util.alertMessage("Usuario o contraseña inválida. Inténtalo nuevamente.", true);
+                
                 btnLogin.setEnabled(true);
                 txtPwd.setText("");
                 txtPwd.requestFocus();

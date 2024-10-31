@@ -161,6 +161,7 @@ public class ViewMantenimientoProducto extends javax.swing.JInternalFrame {
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
         // TODO add your handling code here:
+
         int codigo = productoController.idAutoincrementado();
         String nombre = txtNombre.getText();
         double precio = Double.parseDouble(txtPrecio.getText());
@@ -185,6 +186,7 @@ public class ViewMantenimientoProducto extends javax.swing.JInternalFrame {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         // TODO add your handling code here:
+
         txtCantidad.setText("");
         txtNombre.setText("");
         txtPrecio.setText("");

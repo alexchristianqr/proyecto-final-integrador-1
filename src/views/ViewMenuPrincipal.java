@@ -5,14 +5,14 @@ import java.beans.PropertyVetoException;
 
 public class ViewMenuPrincipal extends javax.swing.JFrame {
 
+    Util util = new Util();
     ViewAcercaDe viewAcercaDe = new ViewAcercaDe();
     ViewReserva viewReserva = new ViewReserva();
     ViewMantenimientoCliente viewMantenimientoCliente = new ViewMantenimientoCliente();
-    Util util;
-//    ViewMantenimientoHabitacion viewMantenimientoHabitacion = new ViewMantenimientoHabitacion();
+    ViewMantenimientoHabitacion viewMantenimientoHabitacion = new ViewMantenimientoHabitacion();
 //    ViewMantenimientoEmpleado viewMantenimientoEmpleado = new ViewMantenimientoEmpleado();
-//    ViewMantenimientoProducto viewMantenimientoProducto = new ViewMantenimientoProducto();
-//    ViewVentaProducto viewVentaProducto = new ViewVentaProducto();
+    ViewMantenimientoProducto viewMantenimientoProducto = new ViewMantenimientoProducto();
+    ViewVentaProducto viewVentaProducto = new ViewVentaProducto();
 
     /**
      * Creates new form Principal
@@ -194,9 +194,9 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
 
     private void menuItemAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAcercaDeActionPerformed
 
+        util.centerOnScreen(viewAcercaDe, true);
+
         if (viewAcercaDe.isVisible()) {
-            util.centerOnScreen(viewAcercaDe, true);
-//            viewAcercaDe.setAlwaysOnTop(true);
         } else {
             viewAcercaDe.setVisible(true);
         }
@@ -235,16 +235,16 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
     private void menuItemMantenimientoHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemMantenimientoHabitacionActionPerformed
         // TODO add your handling code here:
 
-//        if (viewMantenimientoHabitacion.isShowing()) {
-//            viewMantenimientoHabitacion.toFront();
-//        } else {
-//            if (viewMantenimientoHabitacion.isSelected()) {
-//                escritorio.setSelectedFrame(viewMantenimientoHabitacion);
-//            } else {
-//                escritorio.add(viewMantenimientoHabitacion);
-//                viewMantenimientoHabitacion.show();
-//            }
-//        }
+        if (viewMantenimientoHabitacion.isShowing()) {
+            viewMantenimientoHabitacion.toFront();
+        } else {
+            if (viewMantenimientoHabitacion.isSelected()) {
+                escritorio.setSelectedFrame(viewMantenimientoHabitacion);
+            } else {
+                escritorio.add(viewMantenimientoHabitacion);
+                viewMantenimientoHabitacion.show();
+            }
+        }
     }//GEN-LAST:event_menuItemMantenimientoHabitacionActionPerformed
 
     private void menuItemMantenimientoEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemMantenimientoEmpleadoActionPerformed
@@ -265,31 +265,31 @@ public class ViewMenuPrincipal extends javax.swing.JFrame {
     private void menuItemVentaProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVentaProductoActionPerformed
         // TODO add your handling code here:
 
-//        if (viewVentaProducto.isShowing()) {
-//            viewVentaProducto.toFront();
-//        } else {
-//            if (viewVentaProducto.isSelected()) {
-//                escritorio.setSelectedFrame(viewVentaProducto);
-//            } else {
-//                escritorio.add(viewVentaProducto);
-//                viewVentaProducto.show();
-//            }
-//        }
+        if (viewVentaProducto.isShowing()) {
+            viewVentaProducto.toFront();
+        } else {
+            if (viewVentaProducto.isSelected()) {
+                escritorio.setSelectedFrame(viewVentaProducto);
+            } else {
+                escritorio.add(viewVentaProducto);
+                viewVentaProducto.show();
+            }
+        }
     }//GEN-LAST:event_menuItemVentaProductoActionPerformed
 
     private void menuItemMantenimientoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemMantenimientoProductoActionPerformed
         // TODO add your handling code here:
 
-//        if (viewMantenimientoProducto.isShowing()) {
-//            viewMantenimientoProducto.toFront();
-//        } else {
-//            if (viewMantenimientoProducto.isSelected()) {
-//                escritorio.setSelectedFrame(viewMantenimientoProducto);
-//            } else {
-//                escritorio.add(viewMantenimientoProducto);
-//                viewMantenimientoProducto.show();
-//            }
-//        }
+        if (viewMantenimientoProducto.isShowing()) {
+            viewMantenimientoProducto.toFront();
+        } else {
+            if (viewMantenimientoProducto.isSelected()) {
+                escritorio.setSelectedFrame(viewMantenimientoProducto);
+            } else {
+                escritorio.add(viewMantenimientoProducto);
+                viewMantenimientoProducto.show();
+            }
+        }
     }//GEN-LAST:event_menuItemMantenimientoProductoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
