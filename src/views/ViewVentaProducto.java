@@ -8,18 +8,17 @@ public class ViewVentaProducto extends javax.swing.JInternalFrame {
 
     ProductoController productoController = new ProductoController();
 
-    public ViewVentaProducto() {
-        initComponents();
-        for (Producto listaProducto : productoController.lista) {
-            this.cbxProducto.addItem(listaProducto.getNombre());
-        }
-    }
+public ViewVentaProducto() {
+    initComponents();
+    productoController.cargarLista(); // Carga los productos
+    actualizar(); // Actualiza el ComboBox con los productos
+}
 
     public void actualizar() {
-
-        for (Producto listaProducto : productoController.lista) {
-            this.cbxProducto.addItem(listaProducto.getNombre());
-        }
+    cbxProducto.removeAllItems(); // Limpia los elementos actuales
+    for (Producto producto : productoController.lista) {
+        cbxProducto.addItem(producto.getNombre()); // Agrega cada producto
+    }
     }
 
     @SuppressWarnings("unchecked")
@@ -66,6 +65,12 @@ public class ViewVentaProducto extends javax.swing.JInternalFrame {
         jLabel2.setText("Producto: ");
 
         jLabel3.setText("Cantidad:");
+
+        cbxProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxProductoActionPerformed(evt);
+            }
+        });
 
         spnCantidad.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
@@ -215,27 +220,48 @@ public class ViewVentaProducto extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
-        String nombre = this.cbxProducto.getSelectedItem().toString();
-        int cantidad = Integer.parseInt(spnCantidad.getValue().toString());
-        DefaultTableModel tabla = (DefaultTableModel) this.tablaDatos.getModel();
-        double precioU = productoController.obtenerPrecio(nombre);
+    String nombre = (String) cbxProducto.getSelectedItem();
+    if (nombre == null || nombre.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Debe seleccionar un producto.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-        tabla.addRow(new Object[]{nombre, cantidad, precioU, cantidad * precioU});
-
-        double sumaTotal = 0;
-        for (int i = 0; i < tabla.getRowCount(); i++) {
-            double valor = (double) tabla.getValueAt(i, 3);
-            sumaTotal = sumaTotal + valor;
+    int cantidad;
+    try {
+        cantidad = (int) spnCantidad.getValue();
+        if (cantidad <= 0) {
+            throw new NumberFormatException();
         }
+    } catch (NumberFormatException e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "La cantidad debe ser mayor a 0.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-        this.lblTotal.setText("S/  " + sumaTotal);
+    double precioU = productoController.obtenerPrecio(nombre);
+    if (precioU <= 0) {
+        javax.swing.JOptionPane.showMessageDialog(this, "No se encontró el precio del producto.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    DefaultTableModel tabla = (DefaultTableModel) tablaDatos.getModel();
+    tabla.addRow(new Object[]{nombre, cantidad, precioU, cantidad * precioU});
+
+    double sumaTotal = 0;
+    for (int i = 0; i < tabla.getRowCount(); i++) {
+        sumaTotal += (double) tabla.getValueAt(i, 3);
+    }
+
+    lblTotal.setText(String.format("S/ %.2f", sumaTotal));
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // TODO add your handling code here:
-        this.cbxProducto.removeAllItems();
-        actualizar();
+    productoController.cargarLista(); // Vuelve a cargar la lista (si hay cambios)
+
     }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void cbxProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxProductoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
