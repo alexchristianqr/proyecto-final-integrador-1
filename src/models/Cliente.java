@@ -3,6 +3,7 @@ package models;
 public class Cliente extends Persona {
 
     private int idCliente;
+    private int idUsuario;
 
     public Cliente() {
     }
@@ -20,4 +21,13 @@ public class Cliente extends Persona {
         this.idCliente = idCliente;
     }
 
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    
 }

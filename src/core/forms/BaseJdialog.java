@@ -5,6 +5,6 @@ import javax.swing.JDialog;
 
 public abstract class BaseJdialog extends JDialog{
     
-    public  Util util;
+    public  Util util = new Util();
     
 }
