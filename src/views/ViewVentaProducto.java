@@ -10,14 +10,14 @@ public class ViewVentaProducto extends javax.swing.JInternalFrame {
 
 public ViewVentaProducto() {
     initComponents();
-    productoController.cargarLista(); // Carga los productos
+    productoController.listarProductos(""); // Carga los productos
     actualizar(); // Actualiza el ComboBox con los productos
 }
 
     public void actualizar() {
     cbxProducto.removeAllItems(); // Limpia los elementos actuales
     for (Producto producto : productoController.lista) {
-        cbxProducto.addItem(producto.getNombre()); // Agrega cada producto
+        cbxProducto.addItem(producto.getDescripcion()); // Agrega cada producto
     }
     }
 
@@ -255,7 +255,7 @@ public ViewVentaProducto() {
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-    productoController.cargarLista(); // Vuelve a cargar la lista (si hay cambios)
+    productoController.listarProductos(""); // Vuelve a cargar la lista (si hay cambios)
 
     }//GEN-LAST:event_btnActualizarActionPerformed
 

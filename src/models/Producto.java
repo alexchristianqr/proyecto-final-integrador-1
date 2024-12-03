@@ -1,39 +1,36 @@
-
 package models;
 
-
 public class Producto {
-    private int codigo;
-    private String nombre;
-    private double precio;
-    private int cantidad;
- 
 
-    public Producto(int codigo, String nombre, double precio, int cantidad) {
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.cantidad = cantidad;
-    }
-    
-    
+    private int idProducto;
+    private String descripcion;
+    private double precio;
+    private int cantidadStock;
+
     public Producto() {
     }
 
-    public int getCodigo() {
-        return codigo;
+    public Producto(Producto producto) {
+        this.idProducto = producto.getIdProducto();
+        this.descripcion = producto.getDescripcion();
+        this.precio = producto.getPrecio();
+        this.cantidadStock = producto.getCantidadStock();
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public int getIdProducto() {
+        return idProducto;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public double getPrecio() {
@@ -44,14 +41,12 @@ public class Producto {
         this.precio = precio;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public int getCantidadStock() {
+        return cantidadStock;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setCantidadStock(int cantidadStock) {
+        this.cantidadStock = cantidadStock;
     }
 
-    
-    
 }

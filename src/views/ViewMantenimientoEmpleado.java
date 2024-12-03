@@ -10,7 +10,7 @@ import models.Empleado;
 public class ViewMantenimientoEmpleado extends javax.swing.JInternalFrame {
 
     EmpleadoController empleadoController = new EmpleadoController();
-    Empleado empleado, oEmpleado;
+    Empleado empleado;
     String accion = null;
     DefaultTableModel modelo;
 
