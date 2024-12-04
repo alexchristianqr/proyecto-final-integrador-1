@@ -2,11 +2,14 @@ package views;
 
 import models.Producto;
 import controllers.ProductoController;
+import core.utils.Util;
 import javax.swing.table.DefaultTableModel;
 
 public class ViewVentaProducto extends javax.swing.JInternalFrame {
 
+    Util util = new Util();
     ProductoController productoController = new ProductoController();
+    DialogListadoProductos dialogListadoProductos = new DialogListadoProductos();
 
 public ViewVentaProducto() {
     initComponents();
@@ -33,6 +36,7 @@ public ViewVentaProducto() {
         spnCantidad = new javax.swing.JSpinner();
         btnAgregarProducto = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
+        btnSeleccionarProducto = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaDatos = new javax.swing.JTable();
@@ -88,6 +92,13 @@ public ViewVentaProducto() {
             }
         });
 
+        btnSeleccionarProducto.setText("...");
+        btnSeleccionarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarProductoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout btnAgregarLayout = new javax.swing.GroupLayout(btnAgregar);
         btnAgregar.setLayout(btnAgregarLayout);
         btnAgregarLayout.setHorizontalGroup(
@@ -102,9 +113,12 @@ public ViewVentaProducto() {
                     .addGroup(btnAgregarLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbxProducto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(cbxProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSeleccionarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnAgregarLayout.createSequentialGroup()
-                        .addGap(0, 179, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(btnAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                             .addComponent(btnAgregarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -117,8 +131,9 @@ public ViewVentaProducto() {
                 .addGap(32, 32, 32)
                 .addGroup(btnAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cbxProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                    .addComponent(cbxProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSeleccionarProducto))
+                .addGap(30, 30, 30)
                 .addGroup(btnAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(spnCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -126,7 +141,7 @@ public ViewVentaProducto() {
                 .addComponent(btnAgregarProducto)
                 .addGap(18, 18, 18)
                 .addComponent(btnActualizar)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 204));
@@ -263,11 +278,25 @@ public ViewVentaProducto() {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxProductoActionPerformed
 
+    private void btnSeleccionarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarProductoActionPerformed
+        // TODO add your handling code here:
+
+        util.centerOnScreen(dialogListadoProductos, true);
+
+        if (dialogListadoProductos.isVisible()) {
+            dialogListadoProductos.toFront();
+        } else {
+            dialogListadoProductos.setVisible(true);
+        }
+        dialogListadoProductos.listarProductos();
+    }//GEN-LAST:event_btnSeleccionarProductoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JPanel btnAgregar;
     private javax.swing.JButton btnAgregarProducto;
+    private javax.swing.JButton btnSeleccionarProducto;
     private javax.swing.JComboBox<String> cbxProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
