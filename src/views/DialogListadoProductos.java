@@ -100,7 +100,10 @@ public class DialogListadoProductos extends javax.swing.JDialog {
         Producto producto = new Producto();
         producto.setIdProducto(Integer.parseInt(tblListado.getValueAt(fila, 0).toString()));
         producto.setDescripcion(tblListado.getValueAt(fila, 1).toString());
-
+        producto.setPrecio(Double.parseDouble(tblListado.getValueAt(fila, 2).toString()));
+        producto.setCantidadStock(Integer.parseInt(tblListado.getValueAt(fila, 3).toString()));
+        producto.setEstado(tblListado.getValueAt(fila, 4).toString());
+        
         // Actualizar en vista reserva
         ViewVentaProducto.producto = producto;
         ViewVentaProducto.refreshView();

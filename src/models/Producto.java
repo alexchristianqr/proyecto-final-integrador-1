@@ -6,6 +6,7 @@ public class Producto {
     private String descripcion;
     private double precio;
     private int cantidadStock;
+    private String estado;
 
     public Producto() {
     }
@@ -15,6 +16,7 @@ public class Producto {
         this.descripcion = producto.getDescripcion();
         this.precio = producto.getPrecio();
         this.cantidadStock = producto.getCantidadStock();
+        this.estado = producto.getEstado();
     }
 
     public int getIdProducto() {
@@ -47,6 +49,14 @@ public class Producto {
 
     public void setCantidadStock(int cantidadStock) {
         this.cantidadStock = cantidadStock;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
 }

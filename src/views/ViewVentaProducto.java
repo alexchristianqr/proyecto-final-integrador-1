@@ -256,38 +256,38 @@ public class ViewVentaProducto extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
-//        String nombre = (String) cbxProducto.getSelectedItem();
-//        if (nombre == null || nombre.isEmpty()) {
-//            javax.swing.JOptionPane.showMessageDialog(this, "Debe seleccionar un producto.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
-//
-//        int cantidad;
-//        try {
-//            cantidad = (int) spnCantidad.getValue();
-//            if (cantidad <= 0) {
-//                throw new NumberFormatException();
-//            }
-//        } catch (NumberFormatException e) {
-//            javax.swing.JOptionPane.showMessageDialog(this, "La cantidad debe ser mayor a 0.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
-//
-//        double precioU = productoController.obtenerPrecio(nombre);
-//        if (precioU <= 0) {
-//            javax.swing.JOptionPane.showMessageDialog(this, "No se encontró el precio del producto.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
-//
-//        DefaultTableModel tabla = (DefaultTableModel) tblListado.getModel();
-//        tabla.addRow(new Object[]{nombre, cantidad, precioU, cantidad * precioU});
-//
-//        double sumaTotal = 0;
-//        for (int i = 0; i < tabla.getRowCount(); i++) {
-//            sumaTotal += (double) tabla.getValueAt(i, 3);
-//        }
-//
-//        lblTotal.setText(String.format("S/ %.2f", sumaTotal));
+        int cantidadStock = producto.getCantidadStock();
+        int cantidad;
+        
+        cantidad = Integer.parseInt(spnCantidad.getValue().toString());
+        if (cantidad <= 0) {
+            util.alertMessage("La cantidad no puede ser CERO", true);
+            return;
+        }
+
+        if (cantidad > cantidadStock) {
+            util.alertMessage("No hay stock disponible en estos momentos", true);
+            return;
+        }
+
+        double precioU = producto.getPrecio();
+        if (precioU <= 0) {
+            util.alertMessage("El precio no puede ser CERO", true);
+            return;
+        }
+
+        String nombre = producto.getDescripcion();
+
+        // DefaultTableModel tabla = (DefaultTableModel) tblListado.getModel();
+        DefaultTableModel tabla = new DefaultTableModel();
+        tabla.addRow(new Object[]{nombre, cantidad, precioU, cantidad * precioU});
+
+        double sumaTotal = 0;
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            sumaTotal += (double) tabla.getValueAt(i, 3);
+        }
+
+        lblTotal.setText(String.format("S/ %.2f", sumaTotal));
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -309,7 +309,7 @@ public class ViewVentaProducto extends javax.swing.JInternalFrame {
         } else {
             dialogListadoProductos.setVisible(true);
         }
-        
+
         dialogListadoProductos.listarProductos();
     }//GEN-LAST:event_btnSeleccionarProductoActionPerformed
 
