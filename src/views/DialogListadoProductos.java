@@ -102,8 +102,8 @@ public class DialogListadoProductos extends javax.swing.JDialog {
         producto.setDescripcion(tblListado.getValueAt(fila, 1).toString());
 
         // Actualizar en vista reserva
-//        ViewReserva.cliente = producto;
-//        ViewReserva.refreshView();
+        ViewVentaProducto.producto = producto;
+        ViewVentaProducto.refreshView();
 
         // Cerrar dialogo
         this.dispose();

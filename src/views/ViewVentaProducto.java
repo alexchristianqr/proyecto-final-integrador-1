@@ -11,17 +11,30 @@ public class ViewVentaProducto extends javax.swing.JInternalFrame {
     ProductoController productoController = new ProductoController();
     DialogListadoProductos dialogListadoProductos = new DialogListadoProductos();
 
-public ViewVentaProducto() {
-    initComponents();
-    productoController.listarProductos(""); // Carga los productos
-    actualizar(); // Actualiza el ComboBox con los productos
-}
+    static Producto producto = null;
+
+    public ViewVentaProducto() {
+        initComponents();
+        listarProductosVendidos();
+        // actualizar(); // Actualiza el ComboBox con los productos
+    }
+
+    static void refreshView() {
+        if (producto != null) {
+            txtProducto.setText(producto.getDescripcion());
+        }
+    }
+
+    protected final void listarProductosVendidos() {
+        DefaultTableModel modelo = productoController.listarProductos("");
+        tblListado.setModel(modelo);
+    }
 
     public void actualizar() {
-    cbxProducto.removeAllItems(); // Limpia los elementos actuales
-    for (Producto producto : productoController.lista) {
-        cbxProducto.addItem(producto.getDescripcion()); // Agrega cada producto
-    }
+        cbxProducto.removeAllItems(); // Limpia los elementos actuales
+        for (Producto producto : productoController.lista) {
+            cbxProducto.addItem(producto.getDescripcion()); // Agrega cada producto
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -37,9 +50,10 @@ public ViewVentaProducto() {
         btnAgregarProducto = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnSeleccionarProducto = new javax.swing.JButton();
+        txtProducto = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaDatos = new javax.swing.JTable();
+        tblListado = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lblTotal = new javax.swing.JLabel();
@@ -106,48 +120,55 @@ public ViewVentaProducto() {
             .addGroup(btnAgregarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(btnAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(btnAgregarLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(spnCantidad))
-                    .addGroup(btnAgregarLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbxProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSeleccionarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnAgregarLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(btnAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                             .addComponent(btnAgregarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(14, 14, 14)))
-                .addContainerGap())
+                        .addGap(20, 20, 20))
+                    .addGroup(btnAgregarLayout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(cbxProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(btnAgregarLayout.createSequentialGroup()
+                        .addGroup(btnAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(btnAgregarLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSeleccionarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(btnAgregarLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(spnCantidad)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         btnAgregarLayout.setVerticalGroup(
             btnAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btnAgregarLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addContainerGap()
+                .addComponent(cbxProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(btnAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cbxProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSeleccionarProducto))
-                .addGap(30, 30, 30)
+                    .addComponent(btnSeleccionarProducto)
+                    .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
                 .addGroup(btnAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(spnCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(75, 75, 75)
+                .addGap(93, 93, 93)
                 .addComponent(btnAgregarProducto)
                 .addGap(18, 18, 18)
                 .addComponent(btnActualizar)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 204));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalle de la Venta"));
 
-        tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
+        tblListado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -155,7 +176,7 @@ public ViewVentaProducto() {
                 "Nombre", "Cantidad", "Precio U.", "Importe"
             }
         ));
-        jScrollPane1.setViewportView(tablaDatos);
+        jScrollPane1.setViewportView(tblListado);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -235,42 +256,42 @@ public ViewVentaProducto() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
-    String nombre = (String) cbxProducto.getSelectedItem();
-    if (nombre == null || nombre.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Debe seleccionar un producto.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    int cantidad;
-    try {
-        cantidad = (int) spnCantidad.getValue();
-        if (cantidad <= 0) {
-            throw new NumberFormatException();
-        }
-    } catch (NumberFormatException e) {
-        javax.swing.JOptionPane.showMessageDialog(this, "La cantidad debe ser mayor a 0.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    double precioU = productoController.obtenerPrecio(nombre);
-    if (precioU <= 0) {
-        javax.swing.JOptionPane.showMessageDialog(this, "No se encontró el precio del producto.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    DefaultTableModel tabla = (DefaultTableModel) tablaDatos.getModel();
-    tabla.addRow(new Object[]{nombre, cantidad, precioU, cantidad * precioU});
-
-    double sumaTotal = 0;
-    for (int i = 0; i < tabla.getRowCount(); i++) {
-        sumaTotal += (double) tabla.getValueAt(i, 3);
-    }
-
-    lblTotal.setText(String.format("S/ %.2f", sumaTotal));
+//        String nombre = (String) cbxProducto.getSelectedItem();
+//        if (nombre == null || nombre.isEmpty()) {
+//            javax.swing.JOptionPane.showMessageDialog(this, "Debe seleccionar un producto.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+//            return;
+//        }
+//
+//        int cantidad;
+//        try {
+//            cantidad = (int) spnCantidad.getValue();
+//            if (cantidad <= 0) {
+//                throw new NumberFormatException();
+//            }
+//        } catch (NumberFormatException e) {
+//            javax.swing.JOptionPane.showMessageDialog(this, "La cantidad debe ser mayor a 0.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+//            return;
+//        }
+//
+//        double precioU = productoController.obtenerPrecio(nombre);
+//        if (precioU <= 0) {
+//            javax.swing.JOptionPane.showMessageDialog(this, "No se encontró el precio del producto.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+//            return;
+//        }
+//
+//        DefaultTableModel tabla = (DefaultTableModel) tblListado.getModel();
+//        tabla.addRow(new Object[]{nombre, cantidad, precioU, cantidad * precioU});
+//
+//        double sumaTotal = 0;
+//        for (int i = 0; i < tabla.getRowCount(); i++) {
+//            sumaTotal += (double) tabla.getValueAt(i, 3);
+//        }
+//
+//        lblTotal.setText(String.format("S/ %.2f", sumaTotal));
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-    productoController.listarProductos(""); // Vuelve a cargar la lista (si hay cambios)
+        productoController.listarProductos(""); // Vuelve a cargar la lista (si hay cambios)
 
     }//GEN-LAST:event_btnActualizarActionPerformed
 
@@ -288,6 +309,7 @@ public ViewVentaProducto() {
         } else {
             dialogListadoProductos.setVisible(true);
         }
+        
         dialogListadoProductos.listarProductos();
     }//GEN-LAST:event_btnSeleccionarProductoActionPerformed
 
@@ -307,6 +329,7 @@ public ViewVentaProducto() {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JSpinner spnCantidad;
-    private javax.swing.JTable tablaDatos;
+    private javax.swing.JTable tblListado;
+    private static javax.swing.JTextField txtProducto;
     // End of variables declaration//GEN-END:variables
 }

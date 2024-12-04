@@ -76,7 +76,7 @@ public class ViewReserva extends javax.swing.JInternalFrame {
         }
     }
 
-    protected final void deshabilitarFormulario() {
+        protected final void deshabilitarFormulario() {
 
         lblIdReserva.setVisible(false);
         txtIdReserva.setVisible(false);
