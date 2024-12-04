@@ -2,8 +2,6 @@ package views;
 
 import models.Producto;
 import controllers.ProductoController;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,6 +19,10 @@ public class ViewMantenimientoProducto extends javax.swing.JInternalFrame {
 
     protected final void listarProductos() {
         DefaultTableModel modelo = productoController.listarProductos("");
+
+        // Cargar modelo en dialog
+        DialogListadoProductos.modelo = modelo;
+
         tblListado.setModel(modelo);
     }
 
@@ -59,7 +61,9 @@ public class ViewMantenimientoProducto extends javax.swing.JInternalFrame {
         // --
         btnNuevo.setEnabled(false);// Deshabilitar boton nuevo
         btnGuardar.setEnabled(true);
-        if(accion.equals("ACTUALIZAR")) btnEliminar.setEnabled(true);
+        if (accion.equals("ACTUALIZAR")) {
+            btnEliminar.setEnabled(true);
+        }
         btnCancelar.setEnabled(true);
     }
 
