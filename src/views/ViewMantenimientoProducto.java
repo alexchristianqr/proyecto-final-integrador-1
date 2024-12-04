@@ -41,6 +41,7 @@ public class ViewMantenimientoProducto extends javax.swing.JInternalFrame {
         // --
         btnNuevo.setEnabled(true);// Habilitar boton nuevo
         btnGuardar.setEnabled(false);
+        btnEliminar.setEnabled(false);
         btnCancelar.setEnabled(false);
     }
 
@@ -58,6 +59,7 @@ public class ViewMantenimientoProducto extends javax.swing.JInternalFrame {
         // --
         btnNuevo.setEnabled(false);// Deshabilitar boton nuevo
         btnGuardar.setEnabled(true);
+        if(accion.equals("ACTUALIZAR")) btnEliminar.setEnabled(true);
         btnCancelar.setEnabled(true);
     }
 
